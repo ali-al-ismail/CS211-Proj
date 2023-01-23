@@ -8,6 +8,9 @@
 void add_record(std::vector<user> &users, user new_user){
     return;
 }
+void find_record(std::vector<user> &users, int id){
+    return;
+}
 void edit_record(std::vector<user> &users, int id){
     return;
 }
