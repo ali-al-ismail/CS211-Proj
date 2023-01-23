@@ -18,6 +18,6 @@ void find_record(std::vector<user> &users, int id);
 void edit_record(std::vector<user> &users, int id);
 void delete_record(std::vector<user> &users, int id);
 void sort_records(std::vector<user> &users, short mode);
-void display_records(std::vector<user> &users);
+void display_records(std::vector<user> &users, int id);
 
 #endif

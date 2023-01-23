@@ -34,13 +34,14 @@ user get_new_user(){
 std::vector<user> users;
 
 int main(){
-    std::fstream file;
+    std::ifstream file;
     file.open("records.csv", std::ios::in);
-    //read_file(file,users);
+    read_file(file,users);
     file.close();
 
     int choice;
     bool loop = true;
+    int id;
     while(loop){
         std::cout << "---------------------------------------------------------------------------------------------------\n";
         std::cout << "1. Add record\n2. Edit record\n3. Delete record\n4. Find record\n5. Sort records\n6. Display records\n7. Output stat file\n\n0. Save & Quit\n";
@@ -51,7 +52,6 @@ int main(){
                 add_record(users, get_new_user());
                 break;
             case 2:
-                int id;
                 std::cout << "Enter ID to edit: ";
                 std::cin >> id;
                 edit_record(users,id);
@@ -73,14 +73,16 @@ int main(){
                 sort_records(users,mode);
                 break;
             case 6:
-                display_records(users);
+                std::cout << "Enter the record ID to display, -1 to display all: ";
+                std::cin >> id;
+                display_records(users, id);
                 break;
             case 7:
                 //output_stat_file(users);
                 break;
             case 0:
                 loop = false;
-                //save_file(users);
+                save_file(users);
                 break;
             default:
                 std::cout << "Invalid choice\n";
