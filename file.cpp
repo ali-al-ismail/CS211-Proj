@@ -2,6 +2,7 @@
 #include <vector>
 #include <fstream>
 #include <string>
+#include <time.h>
 #include "record.h"
 
 
@@ -51,4 +52,6 @@ void save_file(std::vector<user> &users){
     file.close();
 }
 
-void output_stat_file(std::vector<user> &users);
+void output_stat_file(std::vector<user> &users){
+    return;
+}
