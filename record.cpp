@@ -65,16 +65,21 @@ void find_record(std::vector<user> &users, int id){
     if(id >= 0){
         int i = find_idx(users,id);
         if(i >= 0){
-        std::cout << "ID: " << users[i].id << "\tName: " << users[i].name << "\tUsername: " << users[i].username << "\tAge: "
+        std::cout << "\nID: " << users[i].id << "\tName: " << users[i].name << "\tUsername: " << users[i].username << "\tAge: "
             << users[i].age << "\tScore: " << users[i].score << std::endl;
             }
         else{
-            std::cout << "Record not found" << std::endl;
+            std::cout << "\nRecord not found" << std::endl;
         }
     }
     else{
         std::cout << "Invalid ID" << std::endl;
     }
+    // wait for user to press enter
+    std::cout << "\nPress Enter to continue...\n";
+    std::cin.ignore(1000, '\n');
+    std::cin.get();
+    return;
 }
 void edit_record(std::vector<user> &users, int id){
     return;
@@ -90,5 +95,9 @@ void display_records(std::vector<user> &users){
             std::cout << "ID: " << users[i].id << "\tName: " << users[i].name << "\tUsername: " << users[i].username << "\tAge: "
             << users[i].age << "\tScore: " << users[i].score << std::endl;
         }
+    // wait for user to press enter
+    std::cout << "\nPress Enter to continue...\n";
+    std::cin.ignore(1000, '\n');
+    std::cin.get();
     return;
 }   
