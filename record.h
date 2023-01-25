@@ -11,8 +11,7 @@ struct user{
     int age;
     int score;
 };
-
-
+int find_idx(std::vector<user> &users, int id);
 void add_record(std::vector<user> &users, user new_user);
 void find_record(std::vector<user> &users, int id);
 void edit_record(std::vector<user> &users, int id);

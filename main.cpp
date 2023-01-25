@@ -16,18 +16,31 @@ Ali Ibrahim Alismail 2220005098
 
 */
 
+
+// NEED TO ADD SAFEGUARDS FOR INPUTS, AGE AND SCORE MUST BE NUMBERS ETC.
 user get_new_user(){
     user new_user;
-    std::cout << "Enter ID: ";
-    std::cin >> new_user.id;
     std::cout << "Enter name: ";
     std::cin >> new_user.name;
     std::cout << "Enter username: ";
     std::cin >> new_user.username;
+    // MAKING SURE INPUT IS A NUMBER FOR THESE TWO
+    while(true){
     std::cout << "Enter age: ";
     std::cin >> new_user.age;
     std::cout << "Enter score: ";
     std::cin >> new_user.score;
+
+    if(std::cin.fail() || new_user.age < 0 || new_user.score < 0){
+        std::cin.clear();
+        std::cin.ignore(1000, '\n');
+        std::cout << "Invalid input." << std::endl;
+    }
+    else{
+        break;
+    }
+    }
+
     return new_user;
 }
 
