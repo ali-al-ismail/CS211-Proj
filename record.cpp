@@ -46,6 +46,7 @@ void add_record(std::vector<user> &users){
             break;
         }
     }
+
         while(true){
             std::cout << "Enter score: ";
             std::cin >> new_user.score;
@@ -58,6 +59,7 @@ void add_record(std::vector<user> &users){
                 break;
             }
         }   
+
     users.push_back(new_user);
 }
 
@@ -91,10 +93,15 @@ void sort_records(std::vector<user> &users, short mode){
     return;
 }
 void display_records(std::vector<user> &users){
+    if(users.size() > 0){
         for(int i = 0; i < users.size(); i++){
             std::cout << "ID: " << users[i].id << "\tName: " << users[i].name << "\tUsername: " << users[i].username << "\tAge: "
             << users[i].age << "\tScore: " << users[i].score << std::endl;
         }
+    }
+    else{
+        std::cout << "\nNo records to display" << std::endl;
+    }
     // wait for user to press enter
     std::cout << "\nPress Enter to continue...\n";
     std::cin.ignore(1000, '\n');
