@@ -30,10 +30,14 @@ void add_record(std::vector<user> &users){
         }
     }
 
+    // getting name and username, using getline to account for spaces
     std::cout << "Enter name: ";
-    std::cin >> new_user.name;
+    std::cin.ignore(1000, '\n');
+    std::getline(std::cin,new_user.name);
     std::cout << "Enter username: ";
-    std::cin >> new_user.username;
+    std::getline(std::cin,new_user.username);
+
+    // getting age and score, using while loop to check for invalid inputs
     while(true){
         std::cout << "Enter age: ";
         std::cin >> new_user.age;
