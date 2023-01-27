@@ -91,6 +91,14 @@ void edit_record(std::vector<user> &users, int id){
     return;
 }
 void delete_record(std::vector<user> &users, int id){
+    if(id >= 0){
+    int i = find_idx(users,id);
+    users.erase(users.begin()+i);
+    }
+    // wait for user to press enter
+    std::cout << "\nPress Enter to continue...\n";
+    std::cin.ignore(1000, '\n');
+    std::cin.get();
     return;
 }
 void sort_records(std::vector<user> &users, short mode){
