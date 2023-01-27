@@ -92,8 +92,17 @@ void edit_record(std::vector<user> &users, int id){
 }
 void delete_record(std::vector<user> &users, int id){
     if(id >= 0){
-    int i = find_idx(users,id);
-    users.erase(users.begin()+i);
+        int i = find_idx(users,id);
+        if(i >= 0){
+            users.erase(users.begin() + i);
+            std::cout << "\nRecord deleted" << std::endl;
+        }
+        else{
+            std::cout << "\nRecord not found" << std::endl;
+        }
+    }
+    else{
+        std::cout << "Invalid ID" << std::endl;
     }
     // wait for user to press enter
     std::cout << "\nPress Enter to continue...\n";
