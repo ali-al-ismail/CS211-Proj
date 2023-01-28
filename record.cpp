@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include "record.h"
-#include <bits/stdc++.h>
+#include <algorithm>
 #include <cmath>
 
 
