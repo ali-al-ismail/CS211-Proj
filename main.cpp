@@ -54,10 +54,13 @@ int main(){
                 delete_record(users,id);
                 break;
             case 4:
-                short mode;
-                std::cout << "1. Sort by ID\n2. Sort by score\n3. Sort by age: ";
+                short mode, n;
+                std::cout << "1. Sort by ID\n2. Sort by score\n3. Sort by age: \n";
                 std::cin >> mode;
-                sort_records(users,mode);
+                bool order;
+                std::cout << "1. Descending\n 0. Ascending: \n";
+                std::cin >> order;
+                sort_records(users,mode, order);
                 break;
             case 5:
                 std::cout << "Enter ID to find: ";

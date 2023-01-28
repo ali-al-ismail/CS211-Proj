@@ -2,6 +2,8 @@
 #include <string>
 #include <vector>
 #include "record.h"
+#include <bits/stdc++.h>
+#include <cmath>
 
 
 
@@ -83,7 +85,7 @@ void find_record(std::vector<user> &users, int id){
     }
     // wait for user to press enter
     std::cout << "\nPress Enter to continue...\n";
-    std::cin.ignore(1000, '\n');
+    std::cin.ignore(1000, '\n'); 
     std::cin.get();
     return;
 }
@@ -135,7 +137,22 @@ void delete_record(std::vector<user> &users, int id){
     std::cin.get();
     return;
 }
-void sort_records(std::vector<user> &users, short mode){
+void sort_records(std::vector<user> &users,  short mode, bool order){
+    std::sort(users.begin(), users.end(), [mode, order](user x, user y){
+        if (mode == 1){
+            return  pow(-1, order) * x.id < pow(-1, order) * y.id;
+        }
+        else if (mode == 2){
+            return pow(-1, order) * x.score < pow(-1, order) * y.score; 
+        }
+        else if (mode == 3){
+            return pow(-1, order) * x.age < pow(-1, order) * y.age;
+        }
+        else{
+            std::cout << "Invalid input\n";
+            return false;
+        }  
+    });
     return;
 }
 void display_records(std::vector<user> &users){
