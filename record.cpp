@@ -91,17 +91,15 @@ void edit_record(std::vector<user> &users, int id){
     if(id >= 0){
         int i = find_idx(users,id);
         if(i >= 0){
-        std::cout<< "\nenter new ID: ";
-        std::cin >> users[i].id;
-        std::cout << "\nEnter name: ";
+        std::cout << "\nEnter new name: ";
         std::cin.ignore(1000, '\n');
-        std::getline(std::cin,users[i].name);
-        std::cout << "\nEnter username: ";
-        std::getline(std::cin,users[i].username);
-        std::cout<< "\nenter new Age: ";
-        std::cin >> users[i].age; 
-        std::cout<< "\nenter new Score: ";
-        std::cin >> users[i].score;
+        std::getline(std::cin,users.at(i).name);
+        std::cout << "\nEnter new username: ";
+        std::getline(std::cin,users.at(i).username);
+        std::cout<< "\nEnter new Age: ";
+        std::cin >> users.at(i).age; 
+        std::cout<< "\nEnter new Score: ";
+        std::cin >> users.at(i).score;
         std::cout<< std::endl;
             }
         else{
