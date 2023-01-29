@@ -2,6 +2,7 @@
 Ali Ibrahim Alismail            2220005098
 Husain Zaki Alburaiki           2220000583
 
+Husian Turki Alujaiyan          2220003180
 Jalil Mohammed Almuhaishi       2220006063
 Nezar Salah Altarouti           2220003994
 Mohammed Abdulkarim Bukhamsin   2220002615
