@@ -5,7 +5,9 @@
 #include <algorithm>
 #include <cmath>
 
-
+#define ID 0
+#define SCORE 1
+#define AGE 2
 
 // sequential search, but it's fine for now
 int find_idx(std::vector<user> &users, int id){
@@ -35,15 +37,21 @@ void add_record(std::vector<user> &users){
     // getting name and username, using getline to account for spaces
     std::cout << "Enter name: ";
     std::cin.ignore(1000, '\n');
-    std::getline(std::cin,new_user.name);
-    std::cout << "Enter username: ";
-    std::getline(std::cin,new_user.username);
+    std::getline(std::cin, new_user.name);
+    if(new_user.name.empty()){
+        new_user.name = "NoName_" + std::to_string(new_user.id);
+    }
 
+    std::cout << "Enter username: ";
+    std::getline(std::cin, new_user.username);
+    if(new_user.username.empty()){
+        new_user.username = "Guest_" + std::to_string(new_user.id);
+    }
     // getting age and score, using while loop to check for invalid inputs
     while(true){
         std::cout << "Enter age: ";
         std::cin >> new_user.age;
-        if(std::cin.fail() || new_user.age < 0 || new_user.score < 0){
+        if(std::cin.fail() || new_user.age <= 0 || new_user.score <= 0){
             std::cin.clear();
             std::cin.ignore(1000, '\n');
             std::cout << "Invalid input." << std::endl;
@@ -56,7 +64,7 @@ void add_record(std::vector<user> &users){
         while(true){
             std::cout << "Enter score: ";
             std::cin >> new_user.score;
-            if(std::cin.fail() || new_user.age < 0 || new_user.score < 0){
+            if(std::cin.fail() || new_user.age <= 0 || new_user.score <= 0){
                 std::cin.clear();
                 std::cin.ignore(1000, '\n');
                 std::cout << "Invalid input." << std::endl;
@@ -68,6 +76,7 @@ void add_record(std::vector<user> &users){
 
     users.push_back(new_user);
 }
+
 
 void find_record(std::vector<user> &users, int id){
     if(id >= 0){
@@ -89,21 +98,50 @@ void find_record(std::vector<user> &users, int id){
     std::cin.get();
     return;
 }
+
+
 void edit_record(std::vector<user> &users, int id){
     if(id >= 0){
         int i = find_idx(users,id);
         if(i >= 0){
-        std::cout << "\nEnter new name: ";
+        std::cout << "Enter new name: ";
         std::cin.ignore(1000, '\n');
         std::getline(std::cin,users.at(i).name);
-        std::cout << "\nEnter new username: ";
+        if(users.at(i).name.empty())
+            users.at(i).name = "NoName_" + std::to_string(users.at(i).id);
+        std::cout << "Enter new username: ";
         std::getline(std::cin,users.at(i).username);
-        std::cout<< "\nEnter new Age: ";
-        std::cin >> users.at(i).age; 
-        std::cout<< "\nEnter new Score: ";
-        std::cin >> users.at(i).score;
-        std::cout<< std::endl;
+        if(users.at(i).username.empty())
+            users.at(i).username = "Guest_" + std::to_string(users.at(i).id);
+
+        while(true){
+            std::cout << "Enter new age: ";
+            std::cin >> users.at(i).age;
+            if(std::cin.fail() || users.at(i).age <= 0 || users.at(i).score <= 0){
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+                std::cout << "Invalid input." << std::endl;
             }
+            else{
+                break;
+            }
+        }
+
+        while(true){
+            std::cout << "Enter new score: ";
+            std::cin >> users.at(i).score;
+            if(std::cin.fail() || users.at(i).age <= 0 || users.at(i).score <= 0){
+                std::cin.clear();
+                std::cin.ignore(1000, '\n');
+                std::cout << "Invalid input." << std::endl;
+            }
+            else{
+                break;
+            }
+            }
+
+        }
+        
         else{
             std::cout << "\nRecord not found" << std::endl;
         }
@@ -117,6 +155,8 @@ void edit_record(std::vector<user> &users, int id){
     std::cin.get();
     return;
 }
+
+
 void delete_record(std::vector<user> &users, int id){
     if(id >= 0){
         int i = find_idx(users,id);
@@ -137,24 +177,26 @@ void delete_record(std::vector<user> &users, int id){
     std::cin.get();
     return;
 }
+
+
 void sort_records(std::vector<user> &users,  short mode, bool order){
     std::sort(users.begin(), users.end(), [mode, order](user x, user y){
-        if (mode == 1){
-            return  pow(-1, order) * x.id < pow(-1, order) * y.id;
-        }
-        else if (mode == 2){
-            return pow(-1, order) * x.score < pow(-1, order) * y.score; 
-        }
-        else if (mode == 3){
-            return pow(-1, order) * x.age < pow(-1, order) * y.age;
-        }
-        else{
-            std::cout << "Invalid input\n";
-            return false;
-        }  
+        switch(mode){
+            case ID:
+                return  pow(-1, order) * x.id < pow(-1, order) * y.id;
+            case SCORE:
+                return pow(-1, order) * x.score < pow(-1, order) * y.score;
+            case AGE:
+                return pow(-1, order) * x.age < pow(-1, order) * y.age;
+            default:
+                std::cout << "Invalid input\n";
+                return false;
+        } 
     });
     return;
 }
+
+
 void display_records(std::vector<user> &users){
     if(users.size() > 0){
         for(int i = 0; i < users.size(); i++){
