@@ -91,7 +91,7 @@ void find_record(std::vector<user> &users, int id){
         int i = find_idx(users,id);
         if(i >= 0){
         std::cout << "\nID: " << users[i].id << "\tName: " << users[i].name << "\tUsername: " << users[i].username << "\tAge: "
-            << users[i].age << "\tScore: " << users[i].score << "\tGame: " << users[i].score << std::endl;
+            << users[i].age << "\tScore: " << users[i].score << "\tGame: " << users[i].game << std::endl;
             }
         else{
             std::cout << "\nRecord not found" << std::endl;
