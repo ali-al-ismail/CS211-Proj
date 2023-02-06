@@ -10,6 +10,7 @@ struct user{
     std::string username;
     int age;
     int score;
+    std::string game;
 };
 int find_idx(std::vector<user> &users, int id);
 void add_record(std::vector<user> &users);

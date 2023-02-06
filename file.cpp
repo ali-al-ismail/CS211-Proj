@@ -35,7 +35,12 @@ void read_file(std::ifstream &file, std::vector<user> &users){
         pos = line.find(",");
         new_user.age = std::stoi(line.substr(0,pos));
         line.erase(0,pos+1);
+        pos = line.find(",");
         new_user.score = std::stoi(line);
+        line.erase(0,pos+1);
+        pos = line.find(",");
+        // added game name
+        new_user.game = line.substr(0,pos);
         users.push_back(new_user);
     }
     return;
@@ -47,7 +52,7 @@ void save_file(std::vector<user> &users){
     std::fstream file;
     file.open("records.csv",std::ios::trunc | std::ios::out);
     for(int i = 0; i < users.size(); i++){
-        file << users[i].id << "," << users[i].name << "," << users[i].username << "," << users[i].age << "," << users[i].score << std::endl;
+        file << users[i].id << "," << users[i].name << "," << users[i].username << "," << users[i].age << "," << users[i].score << "," << users[i].game << std::endl;
     }
     file.close();
 }
