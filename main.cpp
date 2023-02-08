@@ -29,6 +29,10 @@ std::vector<user> users;
 int main(){
     std::ifstream file;
     file.open("records.csv", std::ios::in);
+     if(!file.is_open()){
+        std::cout << "An error occured while opening the file." << std::endl;
+        return -1;
+    }
     read_file(file,users);
     file.close();
 
