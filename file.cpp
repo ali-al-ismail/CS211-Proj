@@ -51,10 +51,6 @@ void read_file(std::ifstream &file, std::vector<user> &users){
 void save_file(std::vector<user> &users){
     std::fstream file;
     file.open("records.csv",std::ios::trunc | std::ios::out);
-    if(!file.is_open()){
-        std::cout << "An error occured while saving." << std::endl;
-        return;
-    }
     for(int i = 0; i < users.size(); i++){
         file << users[i].id << "," << users[i].name << "," << users[i].username << "," << users[i].age << "," << users[i].score << "," << users[i].game << std::endl;
     }
@@ -65,13 +61,13 @@ void output_stat_file(std::vector<user> &users){
     // will output number of records, average age, average score, and the highest score / oldest person.
     // will also output the time of the last update
     std::fstream file;
-    file.open("stats.txt",std::ios::trunc | std::ios::out); // open file in trunc mode to clear the file before writing
-    if(!file.is_open()){
-        std::cout << "An error occured while opening the file." << std::endl;
+    file.open("stats.txt",std::ios::trunc | std::ios::out); // open file in trunc mode to clear the file before writing 
+    if(users.size() == 0){
+        file << "No records found.";
+        file.close();
         return;
     }
     file << "Number of records: " << users.size() << std::endl;
-    
     int sum_age = 0;
     int sum_score = 0;
     for(int i = 0; i < users.size(); i++){
