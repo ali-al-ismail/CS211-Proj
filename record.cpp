@@ -41,7 +41,6 @@ void add_record(std::vector<user> &users){
     if(new_user.name.empty()){
         new_user.name = "NoName_" + std::to_string(new_user.id);
     }
-
     std::cout << "Enter username: ";
     std::getline(std::cin, new_user.username);
     if(new_user.username.empty()){
@@ -73,7 +72,6 @@ void add_record(std::vector<user> &users){
                 break;
             }
         }
-
         std::cout << "Enter game: ";
         std::cin.ignore(1000, '\n');
         std::getline(std::cin, new_user.game);
@@ -194,19 +192,34 @@ void delete_record(std::vector<user> &users, int id){
 
 
 void sort_records(std::vector<user> &users,  short mode, bool order){
-    std::sort(users.begin(), users.end(), [mode, order](user x, user y){
-        switch(mode){
-            case ID:
-                return  pow(-1, order) * x.id < pow(-1, order) * y.id;
-            case SCORE:
-                return pow(-1, order) * x.score < pow(-1, order) * y.score;
-            case AGE:
-                return pow(-1, order) * x.age < pow(-1, order) * y.age;
-            default:
-                std::cout << "Invalid input\n";
-                return false;
-        } 
-    });
+    // mode 1 = id, mode 2 = score, mode 3 = age. order = 0 for ascending, order = 1 for descending.
+    if(mode == 1){
+        if(order == 0){
+            std::sort(users.begin(), users.end(), [](user a, user b){return a.id < b.id;});
+        }
+        else{
+            std::sort(users.begin(), users.end(), [](user a, user b){return a.id > b.id;});
+        }
+    }
+    else if(mode == 2){
+        if(order == 0){
+            std::sort(users.begin(), users.end(), [](user a, user b){return a.score < b.score;});
+        }
+        else{
+            std::sort(users.begin(), users.end(), [](user a, user b){return a.score > b.score;});
+        }
+    }
+    else if(mode == 3){
+        if(order == 0){
+            std::sort(users.begin(), users.end(), [](user a, user b){return a.age < b.age;});
+        }
+        else{
+            std::sort(users.begin(), users.end(), [](user a, user b){return a.age > b.age;});
+        }
+    }
+    else{
+        std::cout << "Invalid mode" << std::endl;
+    }
     return;
 }
 
